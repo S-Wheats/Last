@@ -1,0 +1,16 @@
+#map { width: 100%; height: 60vh; }
+
+#placesList { margin-top: 10px; }
+.item { padding: 10px; border-bottom: 1px solid #eee; }
+.info { margin-left: 10px; }
+.markerbg { display: inline-block; width: 36px; height: 37px; background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png') no-repeat; }
+.marker_1 { background-position: 0 0; }
+.marker_2 { background-position: 0 -46px; }
+.marker_3 { background-position: 0 -92px; }
+.marker_4 { background-position: 0 -138px; }
+.marker_5 { background-position: 0 -184px; }
+.marker_6 { background-position: 0 -230px; }
+.marker_7 { background-position: 0 -276px; }
+.marker_8 { background-position: 0 -322px; }
+.marker_9 { background-position: 0 -368px; }
+.marker_10 { background-position: 0 -414px; }      

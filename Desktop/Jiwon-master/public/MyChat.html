@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, width=device-width, initial-scale=1.0"
+    />
+    <title>Chat App</title>
+    <link rel="stylesheet" href="./css/MyChat.css" />
+    <script src="./js/MyChat.js" defer></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="app-header">
+        <h1 id="chatRoomName">채팅방</h1>
+        <button onclick="leaveChatRoom()" class="leave-room-btn">
+          채팅방 떠나기
+        </button>
+      </header>
+      <div id="chatMessages" class="chat-window">
+        <!-- 채팅 메시지가 여기에 렌더링됩니다. -->
+      </div>
+      <div class="chat-input">
+        <input
+          type="text"
+          id="messageInput"
+          placeholder="메시지를 입력하세요"
+        />
+        <button onclick="sendMessage()">보내기</button>
+      </div>
+      <footer class="app-footer">
+        <button class="icon" onclick="location.href='./MySNS.html'">홈</button>
+      </footer>
+    </div>
+  </body>
+</html>
