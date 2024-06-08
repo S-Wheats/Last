@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <title>Random</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+
+<body>
+<div class="outline outline-black" style="max-width: 500px">
+
+<!-- 상단바 -->
+<div class="bg-stone-700 shadow-md p-4" id="top">
+    <div>
+        <p class="text-center text-gray-200 text-3xl py-2 font-bold">랜덤 학식 뽑기</p>
+    </div>
+</div>
+
+<div class="bg-white rounded-b-lg">
+    <div class="flex flex-col p-4"> 
+        <div class="w-full bg-pink-300 text-white text-xl text-center font-semibold rounded-lg shadow-md shadow-gray-500 outline outline-white">
+          <p class="pt-1">오늘학식 뭐먹지?</p>
+          <p class="pb-1">고민없이 이건 어때?</p>
+        </div>
+    </div>
+</div>
+
+<div class="p-3 bg-white rounded-b-lg">
+  <div class="bg-gray-200 rounded-lg overflow-hidden h-96 w-full flex flex-col">
+      <div class="flex-grow flex items-center justify-center">
+          <img src="img/default.png" alt="기본 이미지" class="max-h-full max-w-full object-cover" id="food">
+      </div>
+      <div class="bg-white p-2 flex items-center justify-center">
+          <p class="text-2xl text-center font-semibold" id="foodname">GO 눌러주세요!</p>
+      </div>
+  </div>
+</div>
+
+<!--시간 나면 추가할 부분(선택한 종류만 랜덤 돌리기 가능)-->
+<!-- <div class="flex flex-col"
+    <div class="flex justify-around py-2"> <!--TODO 채팅방과 연동후 Redirect
+        <button  id="한식" class="flex flex-col items-center rounded-lg" style="background-color: rgb(255, 188, 210);">
+          <p class="text-center text-black text-xm p-4 font-semibold">한식</p> 
+        </button>
+        <button  id="분식" class="flex flex-col items-center rounded-lg" style="background-color: rgb(255, 188, 210);">
+            <p class="text-center text-black text-xm p-4 font-semibold">분식</p>
+        </button>
+        <button id="라면" class="flex flex-col items-center rounded-lg" style="background-color: rgb(255, 188, 210);">
+            <p class="text-center text-black text-xm p-4 font-semibold">라면/국수</p>
+        </button>
+        <button  id="덮밥" class="flex flex-col items-center rounded-lg" style="background-color: rgb(255, 188, 210);">
+            <p class="text-center text-black text-xm p-4 font-semibold">덮밥</p>
+        </button>
+        <button  id="주먹밥" class="flex flex-col items-center rounded-lg" style="background-color: rgb(255, 188, 210);">
+            <p class="text-center text-black text-xm p-4 font-semibold">주먹밥</p>
+        </button> 
+    </div>
+</div>-->
+
+<div class="bg-white rounded-b-lg flex flex-col">
+    <div class="flex flex-col p-5"> 
+        <button onclick="gogo()" id="go" class="p-2 flex-1 flex flex-col items-center bg-blue-300 text-white text-3xl text-center font-semibold rounded-lg shadow-md shadow-gray-500 outline outline-white">
+          GO
+        </button>
+      <script src="random.js"></script>
+    </div>
+</div>
+
+<br><br><br><!--하단바 간격유지용 break-->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-md z-10"> <!-- 하단바 베이스 생성-->
+    <div class="flex justify-around py-2"> <!-- Flex 컨테이너 생성-->
+      <div class="flex flex-col items-center" onclick="location.href='./MyPage.html'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+        </svg>
+        <span class="text-xs">마이페이지</span>
+      </div>
+      <div class="flex flex-col items-center">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+        </svg>
+       </div>
+      <div class="flex flex-col items-center" onclick="location.href='./index.html'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
+        </svg>
+        <span class="text-xs">홈</span>
+      </div>
+      <div class="flex flex-col items-center" onclick="location.href='./MySNS.html'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"></path>
+        </svg>
+        <span class="text-xs">커뮤니티</span>
+      </div>
+      <div class="flex flex-col items-center" onclick="location.href='#top'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5"></path>
+        </svg>
+        <span class="text-xs">맨 위로</span>
+      </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
