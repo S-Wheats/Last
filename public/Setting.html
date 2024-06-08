@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, width=device-width, initial-scale=1.0"
+    />
+    <title>My Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- 상단바 -->
+    <div class="bg-stone-700 p-4 shadow-md">
+      <h1 class="text-xl font-bold text-white">환경설정</h1>
+    </div>
+
+    <!-- 계정 정보 -->
+    <div class="p-4 mt-4 mx-2 bg-white rounded-lg">
+      <h2 class="text-xl font-bold mb-4">계정정보</h2>
+      <p class="font-semibold">아이디</p>
+      <p class="text-gray-600 mb-4" id="UserID">로딩중</p>
+      <p>
+        <button
+          class="text-blue-500 font-semibold mb-4"
+          onclick="showChangePasswordModal()"
+        >
+          비밀번호 변경하기
+        </button>
+      </p>
+      <p>
+        <button class="text-red-500 font-semibold" onclick="deleteAccount()">
+          회원탈퇴
+        </button>
+      </p>
+    </div>
+
+    <!-- 비밀번호 변경 모달 -->
+    <div id="changePasswordModal" style="display: none">
+      <div class="fixed z-10 inset-0 overflow-y-auto">
+        <div
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+          </div>
+          <span
+            class="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+            >&#8203;</span
+          >
+          <div
+            class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+          >
+            <div>
+              <h3
+                class="text-lg leading-6 font-medium text-gray-900"
+                id="modal-title"
+              >
+                비밀번호 변경
+              </h3>
+              <div class="mt-2">
+                <input
+                  type="password"
+                  id="newPassword"
+                  placeholder="새 비밀번호"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                />
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  placeholder="비밀번호 확인"
+                  class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                />
+              </div>
+            </div>
+            <div class="mt-5 sm:mt-6">
+              <button
+                type="button"
+                onclick="changePassword()"
+                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+              >
+                변경하기
+              </button>
+            </div>
+            <div class="mt-2">
+              <button
+                type="button"
+                onclick="closeChangePasswordModal()"
+                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-gray-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:border-gray-700 focus:shadow-outline-gray transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+              >
+                닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        // 로컬 스토리지에서 사용자 이메일 가져오기
+        const userEmail = localStorage.getItem("userEmail");
+        console.log("Stored userEmail:", userEmail); // 콘솔 로그 추가
+        if (userEmail) {
+          document.getElementById("UserID").innerText = userEmail;
+        }
+      });
+
+      function showChangePasswordModal() {
+        document.getElementById("changePasswordModal").style.display = "block";
+      }
+
+      function closeChangePasswordModal() {
+        document.getElementById("changePasswordModal").style.display = "none";
+      }
+
+      async function changePassword() {
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        if (newPassword !== confirmPassword) {
+          alert("비밀번호가 일치하지 않습니다.");
+          return;
+        }
+
+        const response = await fetch("/api/users/change-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: localStorage.getItem("userEmail"),
+            newPassword: newPassword,
+          }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          alert("비밀번호가 변경되었습니다.");
+          closeChangePasswordModal();
+        } else {
+          alert("비밀번호 변경에 실패했습니다.");
+        }
+      }
+
+      async function deleteAccount() {
+        if (!confirm("정말로 회원탈퇴를 하시겠습니까?")) {
+          return;
+        }
+
+        const response = await fetch("/api/users/delete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: localStorage.getItem("userEmail") }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          alert("회원탈퇴가 완료되었습니다.");
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("userName");
+          window.location.href = "./signup.html";
+        } else {
+          alert("회원탈퇴에 실패했습니다.");
+        }
+      }
+    </script>
+  </body>
+</html>
