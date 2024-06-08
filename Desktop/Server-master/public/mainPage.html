@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+  <title>Main</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+
+<body>
+<div class="bg-gray-200 outline outline-black" style="max-width: 500px">
+
+<!-- 상단바 -->
+<div class="bg-stone-700 shadow-md p-4 " id="top">
+    <div>
+        <img src="logo.png" width="40"/>
+        <p class="text-right text-gray-200 text-xs pb-1">커뮤니티로 -></p>
+        <div onClick="location.href='./MySearch.html'"> <!--TODO Input에 대한 Submit 구현 및 검색결과 연동-->
+            <input
+                type="text"
+                class="w-full h-6 border-gray-200 rounded-full text-center outline-none"
+                placeholder="식당정보가 궁금해? 검색해!"
+            />
+        </div>
+
+    </div>
+</div>
+
+<!--상단 흰색 구역-->
+<!--학식 뭐먹지? 밥친구 블럭--> 
+<div class="bg-white rounded-b-lg">
+    <div class="px-3 pt-7 pb-5"> 
+        <div class="w-full bg-blue-300 text-white text-xl font-semibold rounded-lg shadow-md shadow-gray-500 outline outline-white text-center" onClick="location.href='./MySNS.html'">
+          <p class="pt-1"> 혼밥은 용서할 수 없다!</p>
+          <p class="pb-1"> 밥친구 찾으러 가기 클릭!!</p>
+        </div>
+    </div> <!--TODO 하단 배너 href 연동-->
+    <div class="px-3 pt-2 pb-5"> 
+        <button class="w-full bg-pink-300 text-white text-xl font-semibold rounded-lg shadow-md shadow-gray-500 outline outline-white" onClick="location.href='./random.html'">
+          <p class="pt-1">오늘학식 뭐먹지?</p>
+          <p class="pb-1">고민없이 이건 어때?</p>
+        </button>
+    </div>
+
+    <!--채팅방 미리보기-->
+    <div>
+    <p class="px-3 pt-2 text-xm font-bold">자주보는 채팅방</p>
+    </div>
+    <div class="flex mt-1"> <!--TODO 채팅방과 연동후 Redirect-->
+        <div class="p-1 flex-1 flex flex-col items-center">
+          <svg data-slot="icon" class="w-8, h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"></path>
+          </svg>
+          <p class="text-center text-black text-xs pt-1 font-semibold">우주공강</p>
+        </div>
+        <div class="p-1 flex-1 flex flex-col items-center">
+          <svg data-slot="icon" class="w-8, h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"></path>
+          </svg>
+          <p class="text-center text-black text-xs pt-1 font-semibold">컴공 19학..</p>
+        </div>
+        <button class="p-1 flex-1 flex flex-col items-center">
+          <svg data-slot="icon" class="w-8, h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"></path>
+          </svg>
+          <p class="text-center text-black text-xs pt-1 font-semibold">일본 음식</p>
+        </button>
+        <button class=" p-1 flex-1 flex flex-col items-center">
+          <svg data-slot="icon" class="w-8, h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"></path>
+          </svg>
+          <p class="text-center text-black text-xs pt-1 font-semibold">엉생 작작..</p>
+        </button>
+        <button class=" p-1 flex-1 flex flex-col items-center">
+          <svg data-slot="icon" class="w-8, h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"></path>
+          </svg>
+            <p class="text-center text-black text-xs pt-1 pb-2 font-semibold">모프 조별</p>
+        </button>
+    </div>
+    
+</div>
+
+    <p class="text-center text-xm pt-2 pb-2 text-gray-400 font-bold"> 밀어서 커뮤니티로 → </p>
+
+<!--하단 흰색 구역-->
+<!--한중일 양-->
+<!--지도-->
+<div class="bg-white rounded-t-lg"> 
+<p class="pt-10 text-center text-3xl pb-10">대삼먹 지도</p>
+<div class="px-10 pb-3">
+    <div class="bg-gray-300 text-black text-xl font-semibold rounded-lg shadow-md shadow-gray-500 outline outline-white p-2 mb-2" > 
+        <p class="text-center text-xm pt-2 pb-1">내가 먹고싶은 음식을 지도에서!</p>
+        <div class="flex">
+            <div class="flex-1 flex flex-col items-center"> <!--TODO 아래 카테고리에 대한 이미지 추가, Kakao API 를 이용한 값 받아오기.-->
+              <button class="bg-white text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"> <img src="chatpre.png"/></button>
+              <p class="text-center text-black text-xm pt-1">한식</p>
+            </div>
+            <div class="flex-1 flex flex-col items-center">
+              <button class="bg-white text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"> <img src="chatpre.png"/></button>
+              <p class="text-center text-black text-xm pt-1">일식</p>
+            </div>
+            <div class="flex-1 flex flex-col items-center">
+              <button class="bg-white text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"> <img src="chatpre.png"/></button>
+              <p class="text-center text-black text-xm pt-1 flex-col">양식</p>
+            </div>
+            <div class="flex-1 flex flex-col items-center">
+              <button class="bg-white text-gray-800 font-bold py-2 px-4 rounded flex justify-center items-center"> <img src="chatpre.png"/></button>
+              <p class="text-center text-black text-xm pt-1">중식</p>
+            </div>
+        </div>
+    </div>
+  </div>
+    
+  <div id="map" style="width:100%;height:400px;"></div> <!--지도 크기 좌우 전체 상하 400픽셀-->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7fcd5860c48f5dca21389c10aa7dbd0b"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+      center: new kakao.maps.LatLng(37.64388077797, 127.110083097611), //지도 중심좌표는 '토리코코로'
+			level: 1 //기본 확대 상태 최대
+		};
+
+		var map = new kakao.maps.Map(container, options);
+
+    //지도 클릭위치에 표출할 마커
+      var marker = new kakao.maps.Marker({
+        //지도 중심좌표에 마커를 생성
+        position: map.getCenter()
+      });
+
+      //지도에 마커 표시
+      marker.setMap(map);
+
+      kakao.maps.event.addListener(map, 'click', function(mouseEvent){
+
+        var latlng = mouseEvent.latLng;
+        marker.setPosition(latlng);
+        
+      });
+
+    /* var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
+    imageSize = new Kakao.maps.Size(64, 69),
+    imageOption = {offset: new Kakao.maps.Point(27, 69)};
+
+    var markerImage = new Kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+    markerPosition = new Kakao.maps.LatLng(37.64388077797, 127.110083097611);
+
+    marker.setMap(map);*/
+	</script>
+</div>
+
+
+
+
+  <!-- 하단바 -->
+<br><br><br><!--하단바 간격유지용 break-->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-md z-10"> <!-- 하단바 베이스 생성-->
+    <div class="flex justify-around py-2"> <!-- Flex 컨테이너 생성-->
+      <div class="flex flex-col items-center" onclick="location.href='./MyPage.html'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+        </svg>
+        <span class="text-xs">마이페이지</span>
+      </div>
+      <div class="flex flex-col items-center" onclick="location.href='./order.html'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+        </svg>
+        <span class="text-xs">포장예약</span>
+      </div>
+      <div class="flex flex-col items-center" onclick="location.href='./mainPage.html'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
+        </svg>
+        <span class="text-xs">홈</span>
+      </div>
+      <div class="flex flex-col items-center" onclick="location.href='./MySNS.html'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"></path>
+        </svg>
+        <span class="text-xs">커뮤니티</span>
+      </div>
+      <div class="flex flex-col items-center" onclick="location.href='#top'">
+        <svg data-slot="icon" class="w-8 h-8" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 7.5-7.5 7.5 7.5"></path>
+        </svg>
+        <span class="text-xs">맨 위로</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

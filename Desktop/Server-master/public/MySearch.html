@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/MySearch.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7fcd5860c48f5dca21389c10aa7dbd0b&libraries=services"></script>
+    
+</head>
+<body class="bg-gray-100">
+    
+    <div class="w-full bg-white shadow-md flex">
+		<button
+        id="searchBtn" onclick="searchPlaces()"
+        class="m-4 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200"
+      >
+        <svg
+          data-slot="icon"
+          fill="none"
+          stroke-width="1.5"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          class="w-4 h-4"
+        > 
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+          ></path>
+        </svg>
+      </button>
+        <input type="text" id="keyword" placeholder="검색어를 입력해주세요" class="w-full p-4 border border-gray-300 rounded-t" onKeyPress="if (event.keyCode==13) { searchPlaces();}">
+        
+        
+    </div>
+    <!-- 아직 미구현
+    <div class="mt-8 w-full md:max-w-md relative">
+      <button
+        class="mx-auto relative overflow-hidden bg-transparent p-2 rounded-lg shadow-lg focus:outline-none"
+        style="max-width: 565px"
+      >
+      
+        <img
+          src="img/search/토리코코로.png"
+          alt="토리코코로 직사각형 이미지"
+          class="w-full h-full object-cover rounded-lg"
+        /> 
+     
+      </button>
+    </div>
+    -->
+
+    
+</body>
+<script>
+    window.onload = function() {
+   var mapContainer = document.getElementById('map'), 
+       mapOption = { 
+           center: new kakao.maps.LatLng(37.64388077797, 127.110083097611), 
+           level: 1 
+       };
+
+         var map = new kakao.maps.Map(mapContainer, mapOption);
+         var ps = new kakao.maps.services.Places();
+         var markers = []; // 마커를 저장할 배열
+
+         function searchPlaces() {
+             var keyword = document.getElementById('keyword').value;
+
+             if (!keyword.trim()) {
+                 alert('키워드를 입력해주세요!');
+                 return false;
+             }
+
+             var center = map.getCenter();
+             var radius = 500; 
+
+             var searchOption = {
+                 location: center,
+                 radius: radius
+             };
+
+             ps.keywordSearch(keyword + " 음식점", placesSearchCB, searchOption);
+         }
+
+         function placesSearchCB(data, status, pagination) {
+             console.log('검색 결과:', data);
+             console.log('상태:', status);
+
+             if (status === kakao.maps.services.Status.OK) {
+                 removeMarkers(); // 이전 마커 제거
+                 displayPlaces(data);
+             } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+                 alert('검색 결과가 존재하지 않습니다.');
+                 return;
+             } else if (status === kakao.maps.services.Status.ERROR) {
+                 alert('검색 중 오류가 발생했습니다.');
+                 return;
+             }
+         }
+
+         function displayPlaces(places) {
+             var listEl = document.getElementById('placesList'),
+                 bounds = new kakao.maps.LatLngBounds();
+
+             // 기존 리스트 내용 제거
+             listEl.innerHTML = '';
+
+             for (var i = 0; i < places.length; i++) {
+                 var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+                     marker = addMarker(placePosition, i),
+                     itemEl = getListItem(i, places[i]);
+
+                 bounds.extend(placePosition);
+
+                 // 검색된 장소 목록 생성
+                 listEl.appendChild(itemEl);
+             }
+
+             map.setBounds(bounds);
+         }
+
+         function addMarker(position, idx) {
+             var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', 
+                 imageSize = new kakao.maps.Size(36, 37),  
+                 imgOptions =  {
+                     spriteSize : new kakao.maps.Size(36, 691), 
+                     spriteOrigin : new kakao.maps.Point(0, (idx * 46)), 
+                     offset: new kakao.maps.Point(13, 37)
+                 },
+                 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+                 marker = new kakao.maps.Marker({
+                     position: position, 
+                     image: markerImage 
+                 });
+
+             marker.setMap(map); 
+             markers.push(marker); // 마커 배열에 추가
+             return marker;
+         }
+
+         function removeMarkers() {
+             for (var i = 0; i < markers.length; i++) {
+                 markers[i].setMap(null); // 마커를 지도에서 제거
+             }
+             markers = []; // 마커 배열 초기화
+         }
+
+         function getListItem(index, place) {
+             var el = document.createElement('div');
+             el.className = 'item';
+             el.innerHTML = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
+                            '<div class="info">' +
+                            '   <h5>' + place.place_name + '</h5>';
+
+             if (place.road_address_name) {
+                 el.innerHTML += '    <span>' + place.road_address_name + '</span>' +
+                                 '   <span class="jibun gray">' + place.address_name + '</span>';
+             } else {
+                 el.innerHTML += '    <span>' + place.address_name + '</span>'; 
+             }
+                            
+             el.innerHTML += '  <span class="tel">' + place.phone + '</span>' +
+                             '</div>';
+             return el;
+         }
+
+         window.searchPlaces = searchPlaces;
+     };
+ </script>
+</html>
+
