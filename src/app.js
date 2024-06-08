@@ -15,14 +15,12 @@ const io = socketIo(server);
 const PORT = process.env.PORT || 3000;
 const MONGO_URI =
   process.env.MONGO_URI ||
-  "mongodb+srv://qorwldnjs117:1234@cluster0.k3h67o5.mongodb.net/s_wheats?retryWrites=true&w=majority";
+  "mongodb+srv://qorwldnjs117:1234@cluster0.k3h67o5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
   })
   .then(() => {
     console.log("MongoDB connected...");
